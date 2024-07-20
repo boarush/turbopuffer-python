@@ -33,7 +33,7 @@ class VectorQuery:
             include_vectors=source.get("include_vectors"),
             include_attributes=source.get("include_attributes"),
             filters=source.get("filters"),
-            rank_by=source.get('rank_by')
+            rank_by=source.get("rank_by"),
         )
 
     def __post_init__(self):
@@ -80,7 +80,12 @@ class VectorQuery:
                         )
         if self.rank_by is not None:
             if not isinstance(self.rank_by, list):
-                raise ValueError('VectorQuery.rank_by must be a list, got:', type(self.rank_by))
+                raise ValueError(
+                    "VectorQuery.rank_by must be a list, got:", type(self.rank_by)
+                )
             for item in self.rank_by:
                 if not isinstance(item, str) and not isinstance(item, list):
-                    raise ValueError('VectorQuery.rank_by elements must be strings or lists, got:', type(item))
+                    raise ValueError(
+                        "VectorQuery.rank_by elements must be strings or lists, got:",
+                        type(item),
+                    )
